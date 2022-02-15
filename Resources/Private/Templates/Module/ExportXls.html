@@ -81,7 +81,11 @@
 													</f:if>
 												</f:then>
 												<f:else>
-                                                    <vh:string.sanitizeCsvCell><vh:misc.variableInVariable obj="{mail}" prop="{fieldUid}" /></vh:string.sanitizeCsvCell>
+                                                    <f:variable name="maildata"><vh:misc.variableInVariable obj="{mail}" prop="{fieldUid}" /></f:variable>
+                                                    <f:if condition="{vh:condition.isNumber(val:maildata)}">
+                                                        <f:then> {maildata} </f:then>
+                                                        <f:else> <vh:string.sanitizeCsvCell>{maildata}</vh:string.sanitizeCsvCell> </f:else>
+                                                    </f:if>
 												</f:else>
 											</f:if>
 										</f:else>
