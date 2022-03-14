@@ -370,10 +370,10 @@ class MailRepository extends AbstractRepository
      * Returns senderemail from a couple of arguments
      *
      * @param Mail $mail
-     * @param string $default
+     * @param string|array $default String as default or cObject array
      * @return string Sender Email
      */
-    public function getSenderMailFromArguments(Mail $mail, string $default = ''): string
+    public function getSenderMailFromArguments(Mail $mail, $default = null): string
     {
         $email = '';
         foreach ($mail->getAnswers() as $answer) {
@@ -383,6 +383,15 @@ class MailRepository extends AbstractRepository
             ) {
                 $email = trim($answer->getValue());
                 break;
+            }
+        }
+        if (empty($email)) {
+            if (!is_array($default)) {
+                $email = $default;
+            } else {
+                /** @var ContentObjectRenderer $contentObject */
+                $contentObject = ObjectUtility::getObjectManager()->get(ContentObjectRenderer::class);
+                $email = $contentObject->cObjGetSingle($default[0][$default[1]], $default[0][$default[1] . '.']);
             }
         }
         if (empty($email)) {
