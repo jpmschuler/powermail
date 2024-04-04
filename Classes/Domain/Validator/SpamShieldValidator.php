@@ -196,15 +196,16 @@ class SpamShieldValidator extends AbstractValidator
      */
     protected function logSpamNotification(Mail $mail): void
     {
-        if (!empty($this->settings['spamshield']['logfileLocation'])) {
+        if (!empty($this->settings['spamshield']['logfileLocation']) || !empty($this->settings['spamshield']['logfileFilename'])) {
+            $logFile = \TYPO3\CMS\Core\Core\Environment::getVarPath() . '/log/' . ($this->settings['spamshield']['logfileFilename'] ?? 'typo3_powermail_spamshield.log');
             BasicFileUtility::createFolderIfNotExists(
-                BasicFileUtility::getPathFromPathAndFilename($this->settings['spamshield']['logfileLocation'])
+                BasicFileUtility::getPathFromPathAndFilename($logFile)
             );
             $logMessage = $this->createSpamNotificationMessage(
-                $this->settings['spamshield']['logTemplate'],
+                $logFile,
                 $this->getVariablesForSpamNotification($mail)
             );
-            BasicFileUtility::prependContentToFile($this->settings['spamshield']['logfileLocation'], $logMessage);
+            BasicFileUtility::appendContentToFile($logFile, $logMessage);
         }
     }
 
