@@ -95,13 +95,13 @@
 							<f:format.date format="{f:translate(key:'datepicker_format_time')}">{mail.crdate}</f:format.date>
 						</td>
 						<td nowrap="nowrap">
-							<span title="{mail.senderName}">
-								<f:format.crop maxCharacters="50" append="&nbsp;[...]">{mail.senderName}</f:format.crop>
+							<span title="{f:if(condition:mail.replyToName,then:'{mail.replyToName}',else:'{mail.senderName}')}">
+								<f:format.crop maxCharacters="50" append="&nbsp;[...]">{f:if(condition:mail.replyToName,then:'{mail.replyToName}',else:'{mail.senderName}')}</f:format.crop>
 							</span>
 						</td>
 						<td nowrap="nowrap">
-							<span title="{mail.senderMail}">
-								<f:format.crop maxCharacters="50" append="&nbsp;[...]">{mail.senderMail}</f:format.crop>
+							<span title="{f:if(condition:mail.replyToMail,then:'{mail.replyToMail}',else:'{mail.senderMail}')}">
+								<f:format.crop maxCharacters="50" append="&nbsp;[...]">{f:if(condition:mail.replyToMail,then:'{mail.replyToMail}',else:'{mail.senderMail}')}</f:format.crop>
 							</span>
 						</td>
 						<td nowrap="nowrap">

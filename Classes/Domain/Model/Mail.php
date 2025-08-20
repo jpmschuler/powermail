@@ -29,6 +29,16 @@ class Mail extends AbstractEntity
     /**
      * @var string
      */
+    protected $replyToName = '';
+
+    /**
+     * @var string
+     */
+    protected $replyToMail = '';
+
+    /**
+     * @var string
+     */
     protected $subject = '';
 
     /**
@@ -198,6 +208,42 @@ class Mail extends AbstractEntity
     public function setSenderMail(string $senderMail): Mail
     {
         $this->senderMail = $senderMail;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReplyToName(): string
+    {
+        return $this->replyToName;
+    }
+
+    /**
+     * @param string $replyToName
+     * @return Mail
+     */
+    public function setReplyToName(string $replyToName): Mail
+    {
+        $this->replyToName = $replyToName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReplyToMail(): string
+    {
+        return $this->replyToMail;
+    }
+
+    /**
+     * @param string $replyToMail
+     * @return Mail
+     */
+    public function setReplyToMail(string $replyToMail): Mail
+    {
+        $this->replyToMail = $replyToMail;
         return $this;
     }
 

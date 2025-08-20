@@ -157,6 +157,8 @@ CREATE TABLE tx_powermail_domain_model_mail (
 
 	sender_name varchar(255) DEFAULT '' NOT NULL,
 	sender_mail varchar(255) DEFAULT '' NOT NULL,
+	reply_to_name varchar(255) DEFAULT '' NOT NULL,
+	reply_to_mail varchar(255) DEFAULT '' NOT NULL,
 	subject varchar(255) DEFAULT '' NOT NULL,
 	receiver_mail varchar(255) DEFAULT '' NOT NULL,
 	body text NOT NULL,
