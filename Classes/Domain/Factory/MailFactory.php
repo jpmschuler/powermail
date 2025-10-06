@@ -46,6 +46,8 @@ class MailFactory
         $mail
             ->setSenderMail($mailRepository->getSenderMailFromArguments($mail))
             ->setSenderName($mailRepository->getSenderNameFromArguments($mail))
+            ->setReplyToMail($mailRepository->getSenderMailFromArguments($mail))
+            ->setReplyToName($mailRepository->getSenderNameFromArguments($mail))
             ->setSubject($settings['receiver']['subject'])
             ->setReceiverMail($settings['receiver']['email'])
             ->setSpamFactor(SessionUtility::getSpamFactorFromSession())
