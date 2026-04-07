@@ -216,7 +216,7 @@ class CreateMarker
         $properties['l10n_parent'] = (int)($properties['l10n_parent'] ?? 0);
         $properties['pid'] = (int)($properties['pid'] ?? 0);
         foreach ($properties as $key => $value) {
-            $field->_setProperty(GeneralUtility::underscoredToLowerCamelCase($key), $value);
+            $field->_setProperty(GeneralUtility::underscoredToLowerCamelCase($key), $value ?? '');
         }
 
         if (!empty($properties['sys_language_uid'])) {
